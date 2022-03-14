@@ -1,0 +1,33 @@
+{
+    "name": "3DaVinci/sberbank-business",
+    "version": "0.1.0",
+    "description": "Sberbank Business API client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Dmitriev",
+            "email": "sedmit@3davinci.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "symfony/http-client": "5.1.*",
+        "symfony/uid": "5.2.*",
+        "symfony/serializer": "^5.2"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "SberBusiness\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SberBusiness\\Tests\\": "tests/"
+        }
+    }
+}
