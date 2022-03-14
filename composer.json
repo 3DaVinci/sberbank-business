@@ -1,5 +1,5 @@
 {
-    "name": "3DaVinci/sberbank-business",
+    "name": "3davinci/sberbank-business",
     "version": "0.1.0",
     "description": "Sberbank Business API client",
     "type": "library",
