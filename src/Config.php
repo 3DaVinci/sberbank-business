@@ -14,7 +14,7 @@ class Config
 
     private string $payeeAccount = '';
 
-    private string $scope = 'openid PAY_DOC_RU_INVOICE';
+    private string $scope = 'openid PAY_DOC_RU_INVOICE PAY_DOC_RU';
 
     public function __construct(array $config)
     {

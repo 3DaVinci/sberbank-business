@@ -5,6 +5,7 @@ namespace SberBusiness;
 use DateTime;
 use SberBusiness\Entity\AccessToken;
 use SberBusiness\Entity\Invoice;
+use SberBusiness\Entity\PaymentDocState;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -93,20 +94,6 @@ class SberHttpClient
         return $this->serializer->serialize($this->accessToken, 'json');
     }
 
-    public function getAccessTokenByRefreshToken(string $refreshToken)
-    {
-        $response = $this->client->request('POST', '/v2/oauth/token', [
-            'body' => [
-                'grant_type' => 'refresh_token',
-                'refresh_token' => $refreshToken,
-                'client_id' => $this->config->getClientId(),
-                'client_secret' => $this->config->getClientSecret()
-            ]
-        ]);
-
-        return $response;
-    }
-
     /**
      * @param string $token
      * @param float $amount
@@ -159,5 +146,34 @@ class SberHttpClient
         }
 
         return $url;
+    }
+
+    /**
+     * @param string $token
+     * @param string $externalId
+     * @return string
+     * @throws \Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface
+     * @throws \Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface
+     */
+    public function checkState(string $token, string $externalId): string
+    {
+        $response = $this->client->request('GET', '/v1/payments/' .$externalId. '/state', [
+            'auth_bearer' => $token
+        ]);
+        if ($response->getStatusCode() !== 200) {
+            throw new \Exception($response->toArray()['errorMsg']);
+        }
+        $content = $response->toArray();
+        $paymentDocState = new PaymentDocState();
+        $paymentDocState
+            ->setBankStatus($content['bankStatus'])
+            ->setBankComment($content['bankComment'])
+            ->setChannelInfo($content['channelInfo'])
+            ->setCrucialFieldsHash($content['crucialFieldsHash']);
+
+        return $this->serializer->serialize($paymentDocState, 'json');
     }
 }
