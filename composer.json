@@ -24,10 +24,5 @@
         "psr-4": {
             "SberBusiness\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "SberBusiness\\Tests\\": "tests/"
-        }
     }
 }
