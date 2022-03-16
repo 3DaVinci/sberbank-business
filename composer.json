@@ -1,6 +1,6 @@
 {
     "name": "3davinci/sberbank-business",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Sberbank Business API client",
     "type": "library",
     "license": "MIT",
@@ -14,7 +14,7 @@
         "php": ">=7.4.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "symfony/http-client": "5.1.*",
+        "symfony/http-client": "5.4.x-dev",
         "symfony/uid": "5.2.*",
         "symfony/serializer": "^5.2"
     },
