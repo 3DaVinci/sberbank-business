@@ -1,6 +1,6 @@
-##sberbank-business - библеотека для работы со SberBusinessAPI
+## sberbank-business - библеотека для работы со SberBusinessAPI
 
-#Установка
+## Установка
 
 ```bash
 composer install
