@@ -14,9 +14,9 @@
         "php": ">=7.4.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "symfony/http-client": "5.4.x-dev",
-        "symfony/uid": "5.2.*",
-        "symfony/serializer": "^5.2"
+        "symfony/http-client": "6.3.*",
+        "symfony/uid": "6.3.*",
+        "symfony/serializer": "6.3.*"
     },
     "require-dev": {
     },
